@@ -23,10 +23,16 @@ class App extends Component {
                 Account
               </Link>
             </li>
+            <li>
+              <Link to="/lending">
+                Request Lending
+              </Link>
+            </li>
           </ul>
         </nav>
         <div>
           <Route exact path="/" component={Landing}/>
+          <Route path="/lending" component={Lending}/>
           <Route path="/account" component={Account}/>
         </div>
       </div>
