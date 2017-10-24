@@ -5,6 +5,7 @@ import {
   Link,
 } from 'react-router-dom';
 import Landing from './pages/Landing';
+import Lending from './pages/Lending';
 import Account from './pages/Account';
 
 class App extends Component {
