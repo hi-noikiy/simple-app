@@ -1,7 +1,11 @@
 import ApiClient from 'helpers/apiClient';
+import { HOSTNAME } from 'config';
 
-const API_ENDPOINT = 'http://localhost:3333/exchange';
-const lendingApiClient = new ApiClient(API_ENDPOINT, true)
+const API_ENDPOINT = `${HOSTNAME}/exchange`;
+const lendingApiClient = new ApiClient(API_ENDPOINT, {
+  isAuthRequired: false,
+  queryParams: {},
+})
 
 export const fetchLendingData = (startIndex) => {
   return (dispatch) => {

@@ -1,33 +1,20 @@
-// const postApiClient = new ApiClient('http://localhost:3333/post');
-
-// const commentApiClient = new ApiClient('http://localhost:3333/comment');
-
-
-// commentApiClient.get()
-// commentApiClient.post()
-
-
-// fetch('urlsadfasfdj', {
-//   method: 'GET',
-//   headers: {
-//     Authorization: `Bearer ${localStorage.jwt}`,
-//   }
-// }).then((resp) => resp.json())
-//   .then((data) => console.log(data))
-
-
 export default class ApiClient {
-  constructor(url, isAuthRequired = false) {
+  constructor(url, options = {}) {
+    const { isAuthRequired, queryParams } = options;
+
     this.url = url;
     this.isAuthRequired = isAuthRequired;
+    this.queryParams = queryParams;
+
     this.headers = {
       'Content-Type': 'application/json',
     }
   }
 
   get = (startIndex) => {
-    console.log(startIndex);
-    return fetch(`${this.url}?startIndex=${startIndex}`)
+    return fetch(this.url, {
+      headers: {}
+    })
       .then(data => data.json())
   }
 

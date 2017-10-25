@@ -7,6 +7,7 @@ import {
 import Landing from './pages/Landing';
 import Lending from './pages/Lending';
 import Account from './pages/Account';
+import Rates from './pages/Rates';
 
 class App extends Component {
   render() {
@@ -25,6 +26,11 @@ class App extends Component {
               </Link>
             </li>
             <li>
+              <Link to="/rates">
+                Lending Rates
+              </Link>
+            </li>
+            <li>
               <Link to="/lending">
                 Request Lending
               </Link>
@@ -35,6 +41,7 @@ class App extends Component {
           <Route exact path="/" component={Landing}/>
           <Route path="/lending" component={Lending}/>
           <Route path="/account" component={Account}/>
+          <Route path="/rates" component={Rates}/>
         </div>
       </div>
     );
