@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 const INITIAL_STATE = {
   data: [],
+  startIndex: 1,
   isLoading: false,
   isPending: false,
   errorMessage: '',
@@ -35,6 +36,11 @@ export default (state = INITIAL_STATE, action) => {
   if (action.type === 'FETCH_LENDING_SUCCESS') {
     return {
       ...state,
+      data: [
+        ...state.data,
+        ...action.payload
+      ],
+      startIndex: state.startIndex + 20.
     }
   }
 
@@ -69,8 +75,21 @@ export default (state = INITIAL_STATE, action) => {
   }
 
   if (action.type === 'UPDATE_LENDING_DATA_SUCCESS') {
+    console.log(action.payload);
+
+    let newData = _.filter(state.data, (item) => item.id !== action.payload.id)
+
+
+    newData.push(action.payload);
+
+    newData = _.sortBy(newData, (item) => item.id)
+
+    // 얘를 삭제하고
+    // 새로운 애를 추가하고
+    // id 기준으로 다시 soryBy
     return {
       ...state,
+      data: newData,
     }
   }
 
@@ -79,8 +98,6 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
     }
   }
-
-  deleteLendingDataReducer(state, action);
 
   return {
     ...state,

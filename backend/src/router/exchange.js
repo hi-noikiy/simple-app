@@ -22,9 +22,43 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  database.push(req.body);
+  database.push({
+    id: database.length,
+    amount: req.body.amount,
+    ratePerDay: req.body.ratePerDay,
+    period: req.body.period,
+  });
+
   return res.send({
     id: database.length,
+  })
+})
+
+router.delete('/:id', (req, res) => {
+  const id = Number(req.params.id);
+  const itemToRemove = _.find(database, item => item.id === id);
+  database = _.pull(database, itemToRemove);
+  return res.send({
+    id,
+  })
+})
+
+router.put('/:id', (req, res) => {
+  const id = Number(req.params.id);
+
+  database = _.filter(database, (item) => item.id !== id) 
+
+  database.push({
+    id: id,
+    amount: req.body.amount,
+    ratePerDay: req.body.ratePerDay,
+    period: req.body.period,
+  })
+
+  database = _.sortBy(database, (item) => item.id)
+
+  return res.send({
+    id,
   })
 })
 
