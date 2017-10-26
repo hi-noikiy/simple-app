@@ -8,14 +8,19 @@ export default class ApiClient {
 
     this.headers = {
       'Content-Type': 'application/json',
-    }
+    };
   }
 
   get = (startIndex) => {
-    return fetch(this.url, {
-      headers: {}
+    return fetch(`${this.url}`, {
+      headers: {
+        ...this.headers,
+        'Access-Control-Allow-Origin': '*',
+      },
     })
-      .then(data => data.json())
+      .then(data => {
+        return data.json();
+      })
   }
 
   update = (id, body) => {
@@ -24,6 +29,6 @@ export default class ApiClient {
       body: JSON.stringify(body),
       headers: this.headers,
     })
-      .then(data => data.json())
+      .then(data => data.json());
   }
 }
