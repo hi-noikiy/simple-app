@@ -1,47 +1,52 @@
-import ApiClient from 'helpers/apiClient';
-import { HOSTNAME } from 'config';
+import ApiClient from "helpers/apiClient";
+import { HOSTNAME } from "config";
 
 const API_ENDPOINT = `${HOSTNAME}/exchange`;
 const lendingApiClient = new ApiClient(API_ENDPOINT, {
   isAuthRequired: false,
   queryParams: {},
-})
+});
 
-export const fetchLendingData = (startIndex) => {
-  return (dispatch) => {
+export const getTradeData = () => ({
+  type: "GET_TRADE_DATA",
+});
+
+export const fetchLendingData = startIndex => {
+  return dispatch => {
     dispatch({
-      type: 'FETCH_LENDING_DATA'
-    })
+      type: "FETCH_LENDING_DATA",
+    });
 
-    lendingApiClient.get(startIndex)
-      .then(result => {
-        return dispatch({
-          type: 'FETCH_LENDING_SUCCESS',
-          payload: result.rates,
-        })
-      })
-  }
-}
+    lendingApiClient.get(startIndex).then(result => {
+      return dispatch({
+        type: "FETCH_LENDING_SUCCESS",
+        payload: result.rates,
+      });
+    });
+  };
+};
 
 export const updateLendingData = (id, body) => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
-      type: 'UPDATE_LENDING_DATA',
-    })
+      type: "UPDATE_LENDING_DATA",
+    });
 
-    lendingApiClient.update(id, body)
-      .then((result) => {
+    lendingApiClient.update(id, body).then(
+      result => {
         dispatch({
-          type: 'UPDATE_LENDING_DATA_SUCCESS',
+          type: "UPDATE_LENDING_DATA_SUCCESS",
           payload: {
             id: result.id,
             ...body,
-          }
-        })
-      }, (error) => {
+          },
+        });
+      },
+      error => {
         dispatch({
-          type: 'UPDATE_LENDING_DATA_FAILED',
-        })
-      })
-  }
-}
+          type: "UPDATE_LENDING_DATA_FAILED",
+        });
+      },
+    );
+  };
+};
