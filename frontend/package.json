@@ -1,0 +1,29 @@
+{
+  "name": "simple-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "echarts": "^3.7.2",
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
+    "moment": "^2.19.1",
+    "nodemon": "^1.12.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.14",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "scripts": {
+    "start": "NODE_PATH=src/ react-scripts start",
+    "build": "NODE_PATH=src/ react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "server": "nodemon ./server/index.js"
+  }
+}

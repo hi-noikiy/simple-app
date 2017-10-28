@@ -1,0 +1,34 @@
+{
+  "name": "simple-app-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist/ && babel ./src --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "server": "nodemon --watch server/ --exec babel-node -- ./src/server/index.js",
+    "taskrunner": "nodemon --watch taskrunner/ --exec babel-node -- ./src/taskrunner/index.js",
+    "dev": "npm run taskrunner | npm run server "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "bitfinex-api-node": "^1.2.1",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0",
+    "request": "^2.83.0",
+    "ws": "^3.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "nodemon": "^1.12.1",
+    "rimraf": "^2.6.2"
+  }
+}
